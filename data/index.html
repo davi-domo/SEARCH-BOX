@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>SEARCH-BOX</title>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="./style/style.css">
+    <link rel="icon" type="image/png" href="./img/ico.png">
+    <link rel="manifest" href="manifest.json" crossorigin="use-credentials" />
+</head>
+
+<body>
+    <div id="global">
+        <header>
+            <div><img src="./img/ico.png"></div>
+            <div><span>SEARCH BOX</span></div>
+        </header>
+        <div class="menu">
+            <div id="menu-gauche">
+                <div id="click_menu">
+                    <div><img src="./img/ico_menu.png"></div>
+                    <div>Menu</div>
+                </div>
+                <div id="action" class="action_menu">
+                    <div id="click_list"><img src="./img/ico_list.png"><span>Liste</span></div>
+                    <div id="add_view"><img src="./img/ico_add.png"><span>Ajouter</span></div>
+                    <div id="liste"><img src="./img/ico_param.png"><span>Paramètre</span></div>
+                    <div id="liste"><img src="./img/ico_propos.png"><span>A propos</span></div>
+                </div>
+            </div>
+
+            <div id="contenue">
+                <div class="search">
+                    <div><input onkeyup="req_search();" type="search" id="box_search" placeholder="Rechercher"></div>
+                    <div id="result_search" class="etat_result_search">
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <footer>
+
+            <div class="txt_footer">© Copyright 2024 <a href="https://www.youtube.com/@SMHOSY" target="_blank">ADS -
+                    l'atelier de SMHOSY</a>. Tous droits réservés. Développé par <a href="https://www.smhosy.fr/"
+                    target="_blank">SMHOSY</a>. Propulsé par ESP32-S3.</div>
+
+        </footer>
+    </div>
+    <div id="disabled"></div>
+    <div id="modif_nb_stock"></div>
+    <div id="add_stock"></div>
+</body>
+<script src="./js/func.js"></script>
+<script language="JavaScript" name="script">
+    //constant d'ecoute 
+    const btn_click_menu = document.querySelector('#click_menu');
+    const action = document.querySelector('#action');
+    const btn_click_list = document.querySelector('#click_list');
+    const btn_add_view = document.querySelector('#add_view');
+
+    // on ecoute le bouton menu
+    click_action = function () {
+        action.classList.toggle("action_menu");
+    }
+    btn_click_menu.addEventListener('click', click_action);
+
+    // on ecoute le bouton liste
+    click_list = function () {
+        load_list();
+        // on ferme le menu pour les petit écran
+        action.classList.toggle("action_menu");
+    }
+    btn_click_list.addEventListener('click', click_list);
+
+    // on ecoute le bouton add_view
+    click_add_view = function () {
+        add_upd_elm("add");
+    }
+    btn_add_view.addEventListener('click', click_add_view);
+
+
+
+
+
+</script>
+
+</html>

@@ -1,0 +1,49 @@
+{
+    "$schema": "https://json.schemastore.org/web-manifest-combined.json",
+    "name": "SEARCH BOX",
+    "short_name": "SEARCH BOX",
+    "start_url": "http://search-box.local/",
+    "display": "standalone",
+    "orientation": "portrait",
+    "select": "none",
+    "background_color": "#ffffff",
+    "description": "Casier connecté avec esp32-S3",
+    "theme_color": "#1359ff",
+    "icons": [
+        {
+            "src": "./img/ico_32.png",
+            "sizes": "32x32",
+            "type": "image/png"
+        },
+        {
+            "src": "./img/ico_48.png",
+            "sizes": "48x48",
+            "type": "image/png"
+        },
+        {
+            "src": "./img/ico_64.png",
+            "sizes": "64x64",
+            "type": "image/png"
+        },
+        {
+            "src": "./img/ico_72.png",
+            "sizes": "72x72",
+            "type": "image/png"
+        },
+        {
+            "src": "./img/ico_96.png",
+            "sizes": "96x96",
+            "type": "image/png"
+        },
+        {
+            "src": "./img/ico_128.png",
+            "sizes": "128x128",
+            "type": "image/png"
+        },
+        {
+            "src": "./img/ico_256.png",
+            "sizes": "256x256",
+            "type": "image/png"
+        }
+    ]
+}

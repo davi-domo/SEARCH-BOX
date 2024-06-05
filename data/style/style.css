@@ -1,0 +1,557 @@
+body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: 'Times New Roman', Times, serif;
+    min-width: 350px;
+    font-size: 1.3vmax;
+    padding: 0;
+    /* on cache les scroll */
+    overflow: hidden;
+    /* on empecheche la sélection */
+    user-select: none;
+}
+
+/*** modification des scrollbar ***/
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(19, 89, 255, 0.5);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(19, 89, 255, 0.);
+}
+
+/***************************************************/
+
+/*** Mise en forme des bouton ***/
+button,
+.label_file {
+    vertical-align: middle;
+    border-radius: 8px;
+    background: linear-gradient(to bottom, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+    border: 1px solid #4ed0fb;
+    text-align: center;
+    display: inline;
+}
+
+.label_file {
+
+    font-size: 1vmax;
+    padding: 0.6vmax;
+    max-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+button:hover,
+.label_file:hover {
+    cursor: pointer;
+
+    background: linear-gradient(to bottom, #5592bb 0%, #327cad 66%, #3eabf3 100%);
+}
+
+button:active,
+.label_file:active {
+
+    background: linear-gradient(to bottom, #3eabf3 0%, #327cad 50%, #3eabf3 100%);
+}
+
+button img,
+.label_file img {
+    vertical-align: middle;
+    height: 2vmax;
+    padding-left: 0.5vmax;
+}
+
+button span,
+.label_file span {
+    vertical-align: middle;
+    padding: 1vmax;
+    font-size: 1.1vmax;
+    color: aliceblue;
+    font-weight: bold;
+
+}
+
+input[type="text"],
+input[type="number"],
+input[type="search"],
+textarea {
+    border: none;
+    border-bottom: 0.1vmax solid rgba(63, 82, 251, 0.6);
+    font-size: 1.5vmax;
+    padding: 0.1vmax;
+    width: 90%;
+    margin: 1% 1% 0% 1%;
+    color: #03249c;
+}
+
+input[type="number"] {
+    width: 30%;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="search"]:focus,
+textarea:focus {
+
+    outline: none;
+    border-bottom: 0.2vmax solid rgba(63, 82, 251, 0.8);
+    color: rgba(23, 50, 255, 0.8);
+}
+
+.input-file {
+    display: none;
+}
+
+/***************************************************/
+
+/*** boite principale ***/
+#global {
+    position: absolute;
+    width: 100%;
+    margin: auto;
+    /*padding: 25px;*/
+    background: #dfdfdf;
+}
+
+/***************************************************/
+
+/*** boite d'entete ***/
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 4.9vmax;
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0.1) 50%, rgb(19 89 255) 100%);
+    min-width: 350px;
+}
+
+header div {
+    position: relative;
+    float: left;
+    margin-left: 2vmax;
+    top: 50%;
+    transform: translate(0, -10%);
+    height: 4vmax;
+}
+
+header img {
+    height: 4vmax;
+}
+
+header span {
+    font-size: 2.5rem;
+    color: rgb(19 89 255);
+}
+
+/***************************************************/
+
+/*** boite menu ***/
+.menu {
+    position: fixed;
+    top: 6vmax;
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(255, 255, 255);
+}
+
+#menu-gauche {
+    width: 15%;
+    float: left;
+}
+
+#click_menu {
+
+    height: 3vmax;
+    background: none;
+    color: rgb(63, 82, 251);
+
+}
+
+#click_menu div {
+    position: relative;
+    float: left;
+    font-size: 2vmax;
+    margin-left: 0.3vmax;
+    height: 2vmax;
+    top: 50%;
+    transform: translate(0, -50%);
+}
+
+#click_menu div img {
+    height: 2vmax;
+}
+
+#action div {
+    line-height: 3vmax;
+    /* hauteur de ligne (identique) */
+    white-space: nowrap;
+    /* interdiction de passer à la ligne */
+    justify-content: center;
+    height: 3vmax;
+    background: rgba(242, 242, 242, 1);
+    padding-left: 0.3vmax;
+    padding-bottom: 0.3vmax;
+    margin-bottom: 0.1vmax;
+    margin-left: 0;
+    width: 95%;
+    border-radius: 0px 15px 15px 0px;
+    transition: all 0.3s ease-in-out;
+}
+
+#action div img {
+    height: 2vmax;
+    position: relative;
+    top: 0.50vmax;
+    transition: all 0.3s ease-in-out;
+}
+
+#action div span {
+
+    font-size: 2vmax;
+    color: rgb(63, 82, 251);
+    transition: all 0.3s ease-in-out;
+}
+
+#action div:hover {
+
+    background: rgba(63, 82, 251, 0.8);
+    width: 98%;
+}
+
+#action div:hover>span {
+    color: aliceblue;
+    padding-left: 1vmax;
+}
+
+#action div:hover>img {
+    height: 2.5vmax;
+    top: 0.25vmax;
+}
+
+/***************************************************/
+
+/*** boite de l'affichage principal ***/
+#contenue {
+    width: 83%;
+    float: left;
+    margin-left: 2vmax;
+    height: 87%;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+}
+
+/***************************************************/
+
+/*** style de la section search   ***/
+.search div {
+    position: relative;
+}
+
+
+/* autocomplementation */
+.etat_result_search {
+    width: 89%;
+    /*border: 0.1vmax solid rgba(23, 50, 255, 0.4);*/
+    display: none;
+    margin-left: 1%;
+
+}
+
+.result_search_id {
+
+    min-width: 450px;
+    width: 98%;
+    background: rgb(229 238 255 / 94%);
+    box-shadow: inset 0 0 0.5vmax rgba(255, 255, 255, 1);
+    border-radius: 0.5vmax;
+    display: block;
+    margin: 1%;
+    padding: 0.3vmax;
+}
+
+.result_search_id:hover {
+    box-shadow: 0 0 0.5vmax rgb(127 142 255 / 75%);
+    background: rgb(131 168 255 / 50%);
+
+}
+
+.table_result_search {
+    width: 100%;
+    white-space: nowrap;
+}
+
+table.table_result_search tbody td.detail {
+
+    max-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 1vmax;
+}
+
+table.table_result_search .alert {
+    color: rgb(255, 0, 0);
+    font-weight: bold;
+}
+
+/***************************************************/
+
+/***   table list   ***/
+table.list {
+    border: 1px solid #1C6EA4;
+    background-color: #ffffff;
+    width: 100%;
+    text-align: left;
+    border-collapse: collapse;
+    margin-top: 1vmax;
+    color: #03249c;
+}
+
+table.list td,
+table.list th {
+    border: 1px solid #f0f0f0;
+    padding: 3px 2px;
+}
+
+table.list tbody td {
+    font-size: 1.2rem;
+    white-space: nowrap;
+}
+
+table.list tbody td.detail {
+    max-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+table.list tr:nth-child(even) {
+    background: #D0E4F5;
+}
+
+table.list tbody tr:hover {
+    background: linear-gradient(to bottom, #b5def9 0%, #9dd4f9 66%, #72c7ff 100%);
+    color: aliceblue;
+}
+
+table.list thead {
+    background: linear-gradient(to bottom, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+    border-bottom: 2px solid #3b4463;
+}
+
+table.list thead th {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #FFFFFF;
+    border-left: 2px solid #D0E4F5;
+}
+
+table.list thead th:first-child {
+    border-left: none;
+}
+
+table.list .alert {
+    color: rgb(255, 0, 0);
+    font-weight: bold;
+}
+
+/***************************************************/
+
+/***   table detail et maj_nb  ***/
+table.detail,
+table.maj_nb,
+table.add_stock {
+    background: white;
+    width: 100%;
+    text-align: left;
+    margin-top: 1vmax;
+    color: #03249c;
+    border-radius: 1vmax;
+    border-spacing: 0;
+    border: 1px solid #1C6EA4;
+    overflow: hidden;
+}
+
+table.detail thead,
+table.maj_nb thead,
+table.add_stock thead {
+    background: linear-gradient(to bottom, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+    border-bottom: 2px solid #3b4463;
+    color: #FFFFFF;
+}
+
+table.detail th,
+table.maj_nb th,
+table.add_stock th {
+    padding: 1.2vmin;
+}
+
+table.detail td,
+table.maj_nb td,
+table.add_stock td {
+    padding: 1vmax;
+}
+
+table.detail .alert {
+    color: rgb(255, 0, 0);
+    font-weight: bold;
+}
+
+table.detail .stock_ok {
+    color: rgb(0, 181, 0);
+}
+
+.img_detail {
+    transition: 0.5s;
+
+}
+
+.img_detail:hover {
+    transform: scale(1.5) translate(50%, 0%);
+    transition: 0.8s;
+}
+
+/***************************************************/
+
+/*** boite de bas de page ***/
+footer {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.1) 10%, rgb(19 89 255) 100%);
+    width: 100%;
+    height: auto;
+    position: fixed;
+    bottom: 0;
+    min-width: 350px;
+}
+
+footer .txt_footer,
+a {
+    font-size: 0.8vmax;
+    text-align: center;
+    padding: 0.5vmax;
+}
+
+/***************************************************/
+#disabled {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.7);
+    display: none;
+}
+
+/*** boite de mise a jour des quantité ***/
+#modif_nb_stock {
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-20%);
+}
+
+/*** boite de mise a jour des quantité ***/
+#add_stock {
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-20%);
+}
+
+/*** Gestion des affichage par rapport à la taille d'écran ***/
+
+/* grand écran pc tablette */
+@media screen and (min-width: 981px) and (max-width: 981px) {
+
+    #global {
+        width: 100%;
+        padding: 0px;
+    }
+
+    #menu-gauche {
+        width: 100%;
+    }
+
+    .action_menu {
+
+        transition: all 0.3s ease-in-out;
+        display: block;
+    }
+
+    #contenue {
+        width: 80%;
+    }
+
+    #action div {
+
+        border-radius: 0px 20px 20px 0px;
+        width: 95%;
+    }
+
+    #action div:hover {
+        width: 90%;
+    }
+
+    #modif_nb_stock {
+        width: 40%;
+    }
+
+    #add_stock {
+        width: 60%;
+    }
+
+
+
+}
+
+/* Petit écran smartphone */
+@media screen and (max-width: 980px) {
+
+    #global {
+        width: 100%;
+        padding: 0px;
+    }
+
+    #menu-gauche {
+        width: 100%;
+    }
+
+    #contenue {
+        width: 100%;
+    }
+
+    .action_menu {
+
+        display: none;
+    }
+
+    #action div {
+        width: 100%;
+        border-radius: 5px 5px 5px 5px;
+    }
+
+    #action div:hover {
+        width: 100%;
+    }
+
+    #modif_nb_stock {
+        width: 65%;
+    }
+
+    #add_stock {
+        width: 75%;
+    }
+}
